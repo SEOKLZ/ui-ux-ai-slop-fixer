@@ -79,7 +79,7 @@ Spotted a new tell? Open an issue with a screenshot, how to detect it, and the f
 
 ## License
 
-MIT © Ali — [Rokamino](https://rokamino.com)
+MIT © SEOKLZ
 
 ---
 

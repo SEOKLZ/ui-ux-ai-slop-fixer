@@ -10,5 +10,5 @@ jobs:
         with: { python-version: "3.12" }
       - name: Scan UI for AI-slop tells
         run: |
-          curl -sSLO https://raw.githubusercontent.com/USERNAME/ui-ux-ai-slop-fixer/main/skills/ui-ux-ai-slop-fixer/scripts/slop_scan.py
+          curl -sSLO https://raw.githubusercontent.com/lilbalto/ui-ux-ai-slop-fixer/main/skills/ui-ux-ai-slop-fixer/scripts/slop_scan.py
           python3 slop_scan.py src --min-severity high

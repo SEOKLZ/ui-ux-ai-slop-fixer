@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Before: Typical AI-Generated UI (Slop)</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Inter', sans-serif;
+      min-height: 100vh;
+      background: radial-gradient(circle at 50% 20%, #4c1d95 0%, #1e1b4b 45%, #0f172a 100%);
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 40px 20px;
+    }
+
+    /* AI Slop Tell #1: Pill eyebrow with emoji */
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 16px;
+      background: rgba(168, 85, 247, 0.15);
+      border: 1px solid rgba(168, 85, 247, 0.4);
+      border-radius: 9999px;
+      font-size: 13px;
+      font-weight: 500;
+      color: #c084fc;
+      margin-bottom: 24px;
+      box-shadow: 0 0 20px rgba(168, 85, 247, 0.25);
+    }
+
+    /* AI Slop Tell #2: Hype headline + 3-stop gradient text */
+    h1 {
+      font-size: 44px;
+      font-weight: 800;
+      text-align: center;
+      max-width: 720px;
+      line-height: 1.15;
+      background: linear-gradient(135deg, #ffffff 10%, #c084fc 50%, #38bdf8 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 16px;
+    }
+
+    /* AI Slop Tell #3: Generic vague subhead */
+    p.subhead {
+      font-size: 16px;
+      color: #94a3b8;
+      text-align: center;
+      max-width: 540px;
+      line-height: 1.6;
+      margin-bottom: 40px;
+    }
+
+    /* AI Slop Tell #4: Glassmorphic outer card with aggressive purple glow */
+    .outer-card {
+      width: 100%;
+      max-width: 580px;
+      background: rgba(255, 255, 255, 0.04);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 28px;
+      padding: 32px;
+      box-shadow: 0 20px 60px rgba(147, 51, 234, 0.35), 0 0 0 1px rgba(168, 85, 247, 0.2) inset;
+    }
+
+    /* AI Slop Tell #5: Card nested inside another card */
+    .nested-card {
+      background: rgba(15, 23, 42, 0.65);
+      border-radius: 20px;
+      padding: 20px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      /* AI Slop Tell #6: Arbitrary pink side accent border */
+      border-left: 4px solid #ec4899;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 24px;
+    }
+
+    .card-left {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    /* AI Slop Tell #7: Icon in a pastel square squircle */
+    .icon-tile {
+      width: 48px;
+      height: 48px;
+      border-radius: 14px;
+      background: rgba(168, 85, 247, 0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      border: 1px solid rgba(168, 85, 247, 0.3);
+    }
+
+    .card-info h3 {
+      font-size: 16px;
+      font-weight: 600;
+      color: #f1f5f9;
+      margin-bottom: 4px;
+    }
+
+    .card-info p {
+      font-size: 13px;
+      color: #94a3b8;
+    }
+
+    /* AI Slop Tell #8: Pulsing badge */
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 10px;
+      background: rgba(34, 197, 94, 0.15);
+      border: 1px solid rgba(34, 197, 94, 0.3);
+      border-radius: 9999px;
+      font-size: 12px;
+      font-weight: 600;
+      color: #4ade80;
+    }
+
+    .pulse-dot {
+      width: 8px;
+      height: 8px;
+      background: #22c55e;
+      border-radius: 50%;
+      animation: pulse 1.5s infinite;
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.7); }
+      70% { transform: scale(1); box-shadow: 0 0 0 8px rgba(34, 197, 94, 0); }
+      100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(34, 197, 94, 0); }
+    }
+
+    /* AI Slop Tell #9: Clickable div with generic gradient button & missing outline */
+    .cta-button {
+      display: block;
+      width: 100%;
+      text-align: center;
+      padding: 16px;
+      background: linear-gradient(135deg, #9333ea, #4f46e5);
+      color: #ffffff;
+      font-weight: 600;
+      font-size: 15px;
+      border-radius: 16px;
+      cursor: pointer;
+      box-shadow: 0 10px 25px rgba(124, 58, 237, 0.4);
+      transition: all 0.3s ease;
+      outline: none;
+    }
+
+    .cta-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 15px 30px rgba(124, 58, 237, 0.6);
+    }
+
+    .footer-leak {
+      margin-top: 16px;
+      font-size: 12px;
+      color: #64748b;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Eyebrow with emoji -->
+  <div class="pill">✨ Introducing Next-Gen AI</div>
+
+  <!-- Gradient text headline with hype copy -->
+  <h1>Supercharge your workflow with seamless AI intelligence</h1>
+  <p class="subhead">Experience effortless synergy that elevates your productivity to unprecedented dimensions.</p>
+
+  <!-- Glassmorphic outer card with neon purple glow -->
+  <div class="outer-card">
+    
+    <!-- Card inside card with pink border -->
+    <div class="nested-card">
+      <div class="card-left">
+        <!-- Squircle icon container -->
+        <div class="icon-tile">🚀</div>
+        <div class="card-info">
+          <h3>Neural Engine V3</h3>
+          <p>Processing autonomous pipelines</p>
+        </div>
+      </div>
+      <!-- Pulsing badge -->
+      <span class="badge"><span class="pulse-dot"></span> Live Active</span>
+    </div>
+
+    <!-- Non-semantic clickable div button -->
+    <div class="cta-button" onclick="alert('Demo')">Unlock Instant Access →</div>
+
+    <!-- Chat/Stack leakage -->
+    <p class="footer-leak">⚡ Built with Next.js 15, Tailwind & Framer Motion</p>
+  </div>
+
+</body>
+</html>

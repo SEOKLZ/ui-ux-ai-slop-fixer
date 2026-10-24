@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>UI/UX AI Slop Fixer — Before vs After</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      background: #0b0d11;
+      color: #e5e7eb;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      padding: 32px 24px;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 36px;
+    }
+
+    header h1 {
+      font-size: 28px;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 8px;
+      letter-spacing: -0.02em;
+    }
+
+    header p {
+      font-size: 15px;
+      color: #9ca3af;
+    }
+
+    .grid-container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    .card-wrapper {
+      background: #141720;
+      border: 1px solid #232838;
+      border-radius: 16px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .card-header {
+      padding: 16px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid #232838;
+    }
+
+    .badge-slop {
+      background: rgba(239, 68, 68, 0.15);
+      color: #f87171;
+      border: 1px solid rgba(239, 68, 68, 0.3);
+      padding: 4px 12px;
+      border-radius: 9999px;
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    .badge-fixed {
+      background: rgba(16, 185, 129, 0.15);
+      color: #34d399;
+      border: 1px solid rgba(16, 185, 129, 0.3);
+      padding: 4px 12px;
+      border-radius: 9999px;
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    .preview-frame {
+      width: 100%;
+      height: 640px;
+      border: none;
+      background: #000;
+    }
+
+    .fixes-summary {
+      padding: 18px 20px;
+      background: #0f121a;
+      border-top: 1px solid #232838;
+      font-size: 13px;
+      line-height: 1.6;
+    }
+
+    .fixes-summary ul {
+      list-style-type: none;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .fixes-summary li strong {
+      color: #f3f4f6;
+    }
+
+    .tag-red { color: #f87171; }
+    .tag-green { color: #34d399; }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>UI/UX AI Slop Fixer — Audit & Transformation</h1>
+    <p>Real-world benchmark of an AI-generated interface transformed by the 5-pillar skill.</p>
+  </header>
+
+  <div class="grid-container">
+    <!-- BEFORE COLUMN -->
+    <div class="card-wrapper">
+      <div class="card-header">
+        <h2 style="font-size: 17px; font-weight: 600;">Before: Typical AI "Vibe-Coded" Slop</h2>
+        <span class="badge-slop">Score: 0 / 100 (Slop)</span>
+      </div>
+      <iframe class="preview-frame" src="before.html"></iframe>
+      <div class="fixes-summary">
+        <ul>
+          <li><span class="tag-red">✕</span> <strong>Pillar 5 (Too Much):</strong> AI purple radial gradient, neon glow & glassmorphism.</li>
+          <li><span class="tag-red">✕</span> <strong>Pillar 1 (Visual Hierarchy):</strong> Illegible 3-stop gradient text headline.</li>
+          <li><span class="tag-red">✕</span> <strong>Pillar 5 (Too Much):</strong> Nested card-in-card + arbitrary pink side tab border.</li>
+          <li><span class="tag-red">✕</span> <strong>Pillar 5 (Too Much):</strong> Emoji squircle (🚀) & distracted pulsing badge.</li>
+          <li><span class="tag-red">✕</span> <strong>Quality:</strong> Clickable div without accessibility / focus state.</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- AFTER COLUMN -->
+    <div class="card-wrapper">
+      <div class="card-header">
+        <h2 style="font-size: 17px; font-weight: 600;">After: Deliberate, Accessible & Production-Ready</h2>
+        <span class="badge-fixed">Score: 100 / 100 (Intentional)</span>
+      </div>
+      <iframe class="preview-frame" src="after.html"></iframe>
+      <div class="fixes-summary">
+        <ul>
+          <li><span class="tag-green">✓</span> <strong>Design Direction:</strong> Solid dark surface, crisp 1px borders, purposeful elevation.</li>
+          <li><span class="tag-green">✓</span> <strong>Typography & Hierarchy:</strong> Crisp high-contrast heading, outcome-focused copy.</li>
+          <li><span class="tag-green">✓</span> <strong>Layout:</strong> Flattened data structure with structured tabular metric cards.</li>
+          <li><span class="tag-green">✓</span> <strong>Iconography:</strong> Monochrome baseline-aligned SVG icon + calm status indicator.</li>
+          <li><span class="tag-green">✓</span> <strong>Quality & A11y:</strong> Semantic &lt;button&gt; with visible focus rings & keyboard navigation.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>

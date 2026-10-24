@@ -7,6 +7,11 @@ A first pass — layout/hierarchy/alignment still need a rendered look.
 """
 import json, os, re, sys
 
+if hasattr(sys.stdout, "reconfigure"):
+    sys.stdout.reconfigure(encoding="utf-8", errors="replace")
+if hasattr(sys.stderr, "reconfigure"):
+    sys.stderr.reconfigure(encoding="utf-8", errors="replace")
+
 EXTS = {".html", ".htm", ".css", ".scss", ".sass", ".less", ".js", ".jsx", ".ts", ".tsx",
         ".vue", ".svelte", ".astro", ".php", ".liquid", ".twig", ".erb", ".md", ".mdx"}
 SKIP_DIRS = {"node_modules", ".git", "dist", "build", ".next", ".nuxt", "vendor", "coverage", ".impeccable", "out"}

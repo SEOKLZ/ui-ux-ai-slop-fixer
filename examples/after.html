@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>After: De-slopped & Deliberate UI</title>
+  <style>
+    :root {
+      --bg-canvas: #090a0f;
+      --bg-surface: #12141c;
+      --bg-surface-raised: #1a1d29;
+      --border-subtle: #232736;
+      --border-strong: #32384e;
+      --text-primary: #f3f4f6;
+      --text-secondary: #9ca3af;
+      --text-muted: #6b7280;
+      --accent: #3b82f6;
+      --accent-hover: #2563eb;
+      --status-success: #10b981;
+      --status-bg: rgba(16, 185, 129, 0.1);
+      --radius-sm: 6px;
+      --radius-md: 10px;
+      --radius-lg: 14px;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      min-height: 100vh;
+      background-color: var(--bg-canvas);
+      color: var(--text-primary);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 48px 24px;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Direction: Deliberate developer-tooling aesthetic, high contrast, 0 gimmicks */
+    .container {
+      width: 100%;
+      max-width: 580px;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start; /* Alignment rule: Left-aligned content has stronger rhythm than centered everything */
+    }
+
+    /* Purposeful category label without emoji or rounded pill */
+    .section-eyebrow {
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 12px;
+    }
+
+    /* High-contrast solid heading, no gradient clipping */
+    h1 {
+      font-size: 34px;
+      font-weight: 700;
+      line-height: 1.25;
+      color: var(--text-primary);
+      margin-bottom: 12px;
+      letter-spacing: -0.02em;
+    }
+
+    /* Concrete user outcome, no buzzwords */
+    p.subhead {
+      font-size: 16px;
+      color: var(--text-secondary);
+      line-height: 1.55;
+      margin-bottom: 32px;
+    }
+
+    /* Clean surface, solid background, crisp 1px border, natural elevation */
+    .panel {
+      width: 100%;
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: 24px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.35);
+    }
+
+    /* Flattened layout: NO card inside card. Clean row with structured key metrics */
+    .metric-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-bottom: 20px;
+      margin-bottom: 20px;
+      border-bottom: 1px solid var(--border-subtle);
+    }
+
+    .service-meta {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    /* Crisp SVG icon aligned on baseline */
+    .service-icon {
+      width: 20px;
+      height: 20px;
+      color: var(--text-primary);
+      flex-shrink: 0;
+    }
+
+    .service-details h2 {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--text-primary);
+      line-height: 1.3;
+    }
+
+    .service-details span {
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+
+    /* Calm, static badge without jitter or pulsing distraction */
+    .status-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 10px;
+      background: var(--status-bg);
+      border: 1px solid rgba(16, 185, 129, 0.25);
+      border-radius: var(--radius-sm);
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--status-success);
+    }
+
+    .status-dot {
+      width: 6px;
+      height: 6px;
+      background: var(--status-success);
+      border-radius: 50%;
+    }
+
+    /* Data summary grid instead of nested fluff */
+    .metrics-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-bottom: 24px;
+    }
+
+    .metric-item {
+      background: var(--bg-surface-raised);
+      padding: 12px;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border-subtle);
+    }
+
+    .metric-label {
+      font-size: 13px;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      margin-bottom: 4px;
+    }
+
+    .metric-value {
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--text-primary);
+      font-variant-numeric: tabular-nums;
+    }
+
+    /* Semantic button with focus visible, solid brand color, and non-generic transition */
+    .actions {
+      display: flex;
+      gap: 12px;
+    }
+
+    button.btn-primary {
+      flex: 1;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 12px 18px;
+      background: var(--accent);
+      color: #ffffff;
+      font-size: 14px;
+      font-weight: 500;
+      border: 1px solid transparent;
+      border-radius: var(--radius-md);
+      cursor: pointer;
+      transition: background-color 0.15s ease, transform 0.1s ease;
+    }
+
+    button.btn-primary:hover {
+      background: var(--accent-hover);
+    }
+
+    button.btn-primary:active {
+      transform: scale(0.98);
+    }
+
+    button.btn-primary:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 2px;
+    }
+
+    button.btn-secondary {
+      padding: 12px 18px;
+      background: transparent;
+      color: var(--text-secondary);
+      font-size: 14px;
+      font-weight: 500;
+      border: 1px solid var(--border-strong);
+      border-radius: var(--radius-md);
+      cursor: pointer;
+      transition: background-color 0.15s ease, color 0.15s ease;
+    }
+
+    button.btn-secondary:hover {
+      background: var(--bg-surface-raised);
+      color: var(--text-primary);
+    }
+
+    button.btn-secondary:focus-visible {
+      outline: 2px solid var(--text-secondary);
+      outline-offset: 2px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <div class="section-eyebrow">Production Observability</div>
+    <h1>Real-time pipeline monitoring for engineering teams</h1>
+    <p class="subhead">Trace distributed jobs, isolate upstream latency bottlenecks, and deliver automated root-cause reports to on-call responders.</p>
+
+    <div class="panel">
+      <!-- Service status row without card-in-card nesting -->
+      <div class="metric-row">
+        <div class="service-meta">
+          <!-- Accessible SVG icon -->
+          <svg class="service-icon" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z" />
+          </svg>
+          <div class="service-details">
+            <h2>Cluster US-East-1</h2>
+            <span>48 nodes healthy</span>
+          </div>
+        </div>
+        <!-- Static, informative badge -->
+        <div class="status-badge">
+          <span class="status-dot"></span>
+          Operational
+        </div>
+      </div>
+
+      <!-- Tabular structured metrics -->
+      <div class="metrics-grid">
+        <div class="metric-item">
+          <div class="metric-label">P99 Latency</div>
+          <div class="metric-value">18.4 ms</div>
+        </div>
+        <div class="metric-item">
+          <div class="metric-label">Throughput</div>
+          <div class="metric-value">42.8k req/s</div>
+        </div>
+        <div class="metric-item">
+          <div class="metric-label">Error Rate</div>
+          <div class="metric-value">0.002%</div>
+        </div>
+      </div>
+
+      <!-- Semantic, accessible action buttons -->
+      <div class="actions">
+        <button type="button" class="btn-primary">View Live Traces</button>
+        <button type="button" class="btn-secondary">Configure Alerts</button>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>
